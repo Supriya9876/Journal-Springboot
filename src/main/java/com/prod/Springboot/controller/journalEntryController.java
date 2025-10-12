@@ -98,6 +98,7 @@ public class journalEntryController {
         Optional<journalEntry> oldEntry= JournalEntryService.getById(journalId);
         if(oldEntry!=null){
             journalEntry old=oldEntry.get();
+
             old.setTitle(!jEntry.getTitle().isEmpty() ? jEntry.getTitle() : old.getTitle());
             old.setDesc(jEntry.getDesc()!=null && !jEntry.getDesc().isEmpty() ? jEntry.getDesc() : old.getDesc());
             JournalEntryService.save(old);
