@@ -25,7 +25,7 @@ public class UserServiceTest {
     @CsvSource({
             "1,1,2",
             "3,4,7",
-            "6,6,11"
+            "6,6,12"
     })
     public void test(int a , int b , int expected){
         assertEquals(expected, a + b);
