@@ -1,6 +1,7 @@
 package com.prod.Springboot.controller;
 
-import com.prod.Springboot.entry.User;
+import com.prod.Springboot.cache.AppCache;
+import com.prod.Springboot.entity.User;
 import com.prod.Springboot.service.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,9 @@ public class AdminController {
     @Autowired
     private UserServices userServices;
 
+    @Autowired
+    private AppCache appCache;
+
     @GetMapping("/all-users")
     public ResponseEntity<?> getAllUser(){
         List<User> users= userServices.getAll();
@@ -26,5 +30,11 @@ public class AdminController {
     @PostMapping("/create-admin")
     public void addAdmin(@RequestBody User user){
         userServices.saveNewAdmin(user);
+    }
+
+
+    @GetMapping("/clear-app-cache")
+    public void clearAppCache(){
+        appCache.init();
     }
 }

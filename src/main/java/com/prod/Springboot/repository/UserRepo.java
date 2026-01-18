@@ -1,6 +1,6 @@
 package com.prod.Springboot.repository;
 
-import com.prod.Springboot.entry.User;
+import com.prod.Springboot.entity.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface UserRepo extends MongoRepository<User,String> {

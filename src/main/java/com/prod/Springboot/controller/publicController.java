@@ -1,6 +1,6 @@
 package com.prod.Springboot.controller;
 
-import com.prod.Springboot.entry.User;
+import com.prod.Springboot.entity.User;
 import com.prod.Springboot.service.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

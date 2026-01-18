@@ -1,4 +1,4 @@
-package com.prod.Springboot.entry;
+package com.prod.Springboot.entity;
 
 
 
@@ -30,6 +30,8 @@ public class User {
     private String username;
     @NonNull
     private String password;
+    private String mail;
+    private boolean sentimentAnalysis;
     @DBRef
     private ArrayList<journalEntry> journalEntries=new ArrayList<>();
 

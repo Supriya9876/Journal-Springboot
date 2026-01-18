@@ -1,0 +1,99 @@
+spring:
+  data:
+    mongodb:
+      uri: "mongodb+srv://batabyalsupriya962_db_user:yWWGvdngX4FnF78P@cluster0.tww7gab.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+      database: "journalDb"
+      show-queries: true
+      auto-index-creation: true
+  main:
+    allow-circular-references: true
+  redis:
+    host: redis-11345.c240.us-east-1-3.ec2.cloud.redislabs.com
+    port: 11345
+    password: z7G51Us1OtrQVcQ0DESrtyIOykiHQqwm
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: batabyalsupriya962@gmail.com
+    password: ijpnkuhtyvonnoig
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+#  kafka:
+#    bootstrap-servers: pkc-921jm.us-east-2.aws.confluent.cloud:9092
+#    producer:
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+#    consumer:
+#      group-id: weekly-sentiment-group-v3
+#      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+#      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+#      properties:
+#        spring.json.value.default.type: com.prod.Springboot.model.SentimentData
+#        spring:
+#          json:
+#            trusted:
+#              packages: com.prod.Springboot.model
+#    properties:
+#      security:
+#        protocol: SASL_SSL
+#      sasl:
+#        mechanism: PLAIN
+#        jaas:
+#          config: org.apache.kafka.common.security.plain.PlainLoginModule required username='HNUEQJNXNGXFOIAZ' password='cfltRJ7tYgZD6q3rwG/CAlGdy7+rWR5Tfq5iyS+NqSkkuHJcRKwD0ybc1pi/8AIg';
+#      session:
+#        timeout:
+#          ms: 45000
+
+  kafka:
+    bootstrap-servers: pkc-921jm.us-east-2.aws.confluent.cloud:9092
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+    consumer:
+      group-id: weekly-sentiment-group-v3
+      auto-offset-reset: latest
+
+      # ✅ Error-handling wrapper
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+
+      properties:
+        # ✅ REQUIRED delegates (THIS FIXES YOUR CRASH)
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+
+        # ✅ REQUIRED for JsonDeserializer
+        spring.json.value.default.type: com.prod.Springboot.model.SentimentData
+        spring.json.trusted.packages: com.prod.Springboot.model
+
+    properties:
+      security.protocol: SASL_SSL
+      sasl.mechanism: PLAIN
+      sasl.jaas.config: >
+        org.apache.kafka.common.security.plain.PlainLoginModule required
+        username='HNUEQJNXNGXFOIAZ'
+        password='cfltRJ7tYgZD6q3rwG/CAlGdy7+rWR5Tfq5iyS+NqSkkuHJcRKwD0ybc1pi/8AIg';
+
+      session.timeout.ms: 45000
+
+
+weather:
+  api:
+    key: e57662f41d8448fe93f162558251310
+
+server:
+  port: 9090
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

@@ -1,31 +1,30 @@
 package com.prod.Springboot.controller;
 
 
-import com.prod.Springboot.entry.User;
-import com.prod.Springboot.entry.journalEntry;
+import com.prod.Springboot.entity.User;
+import com.prod.Springboot.entity.journalEntry;
 import com.prod.Springboot.service.UserServices;
 import com.prod.Springboot.service.journalEntryService;
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/journal")
 public class journalEntryController {
 
-    @Autowired
-    private journalEntryService JournalEntryService;
+    private final journalEntryService JournalEntryService;
+    private final UserServices userServices;
 
-    @Autowired
-    private UserServices userServices;
+    public journalEntryController(journalEntryService JournalEntryService, UserServices userServices) {
+        this.JournalEntryService = JournalEntryService;
+        this.userServices = userServices;
+    }
 
 
     @GetMapping("/get")
